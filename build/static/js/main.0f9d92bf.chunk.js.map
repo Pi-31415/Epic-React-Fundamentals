@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.js"],"names":[],"mappings":"4+DAAA,yC","file":"static/js/main.0f9d92bf.chunk.js","sourcesContent":["import './styles.css'\nimport codegen from 'codegen.macro'\n\ncodegen`module.exports = require('@kentcdodds/react-workshop-app/codegen')`\n"],"sourceRoot":""}
