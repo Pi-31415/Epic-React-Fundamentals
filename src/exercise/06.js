@@ -11,7 +11,10 @@ function UsernameForm({ onSubmitUsername }) {
   function handleSubmit(event) {
     event.preventDefault();
     console.log(event); //SyntheticBaseEvent is created by React
-
+    console.log(event.nativeEvent); //This is real native event from browser
+    const value = event.target.elements.usernameInput.value; //How to access the form via the id
+    console.dir(event.target);
+    onSubmitUsername(value);
     console.log("submitted");
   }
 
@@ -32,8 +35,8 @@ function UsernameForm({ onSubmitUsername }) {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Username:</label>
-        <input name="username" type="text" />
+        <label htmlFor="usernameInput">Username:</label>
+        <input id="usernameInput" name="username" type="text" />
       </div>
       <button type="submit">Submit</button>
     </form>
