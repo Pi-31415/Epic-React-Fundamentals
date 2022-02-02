@@ -7,6 +7,8 @@
   <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+  <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
   <script type="text/babel">
     // 🐨 Make a function called `message` which returns the JSX we want to share
 
@@ -38,7 +40,7 @@
     //If you want to write React custom components, it has to be in Upper case for the starting letter
 
     //Extra credit Validation props type
-
+    /*
     function Message({ subject, greeting }) {
       return (
         <div className="message">
@@ -70,6 +72,62 @@
       </div>
     );
 
-    ReactDOM.render(helloElement, document.getElementById("extra_credit_1"));
+    ReactDOM.render(helloElement, document.getElementById("extra_credit_1")); */
+
+    // Extra Credit proptype package
+
+    /* function Message({ subject, greeting }) {
+      return (
+        <div className="message">
+          {greeting},{subject}
+        </div>
+      );
+    }
+
+    //Error throwing to programmer, disabled in react production
+    const propTypes = {
+      string(props, propName, componentName) {
+        console.log(props, propName, componentName);
+        const type = typeof props[propName];
+        if (type !== "string") {
+          return new Error(
+            `Hello, the component ${componentName} needs the prop \"${propName}\" to be a string`
+          );
+        }
+      },
+    };
+    // Proptypes are Runtime, TypeScript is static type language
+    Message.propTypes = {
+      subject: propTypes.string.isRequired,
+    };
+
+    const helloElement = (
+      <div>
+        <Message subject={5} greeting="Goodbye" />
+      </div>
+    );
+
+    ReactDOM.render(helloElement, document.getElementById("extra_credit_1")); */
+
+    // Extra Credit, React Fragments
+
+    function Message({ subject, greeting }) {
+      return (
+        <div className="message">
+          {greeting},{subject}
+        </div>
+      );
+    }
+
+    // This is a JSX Fragment, allows you to render elements side by side
+
+    const element = (
+      <>
+        <Message subject={5} greeting="Goodbye" />
+        <Message subject={5} greeting="Goodbye" />
+      </>
+    );
+
+    ReactDOM.render(element, document.getElementById("extra_credit_1"));
   </script>
 </body>
