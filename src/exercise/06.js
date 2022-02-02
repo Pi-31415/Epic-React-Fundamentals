@@ -8,12 +8,15 @@ function UsernameForm({ onSubmitUsername }) {
 
   //Usually, the browser does a full reload
 
+  const usernameInputRef = React.useRef();
+
   function handleSubmit(event) {
     event.preventDefault();
     console.log(event); //SyntheticBaseEvent is created by React
     console.log(event.nativeEvent); //This is real native event from browser
-    const value = event.target.elements.usernameInput.value; //How to access the form via the id
     console.dir(event.target);
+    //const value = event.target.elements.usernameInput.value; //How to access the form via the id
+    const value = usernameInputRef.current.value;
     onSubmitUsername(value);
     console.log("submitted");
   }
@@ -36,7 +39,12 @@ function UsernameForm({ onSubmitUsername }) {
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="usernameInput">Username:</label>
-        <input id="usernameInput" name="username" type="text" />
+        <input
+          ref={usernameInputRef}
+          id="usernameInput"
+          name="username"
+          type="text"
+        />
       </div>
       <button type="submit">Submit</button>
     </form>
