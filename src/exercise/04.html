@@ -14,27 +14,62 @@
     // 💰 {message({children: 'Hello World'})} {message({children: 'Goodbye World'})}
     /* Creating custom components in the JS way */
 
-    // Extra Credit, JSX
-    const HelloJSX = <div>Yada</div>;
+    /* // Extra Credit, JSX
+       const HelloJSX = <div>Yada</div>;
 
-    function Message({ children }) {
-      return <div className="message">{children}</div>;
+       function Message({ children }) {
+         return <div className="message">{children}</div>;
+       }
+       const element = (
+         <div className="container">
+           <Message>Something{HelloJSX}</Message>
+         </div>
+       );
+
+       // 💯 This is only the first step to making actual React components. The rest is in the extra credit!
+       ReactDOM.render(element, document.getElementById("root"));
+
+       // Extra Credit 1
+       const helloElement = React.createElement(Message, {
+         children: "您好",
+       });
+       ReactDOM.render(helloElement, document.getElementById("extra_credit_1"));
+    */
+    //If you want to write React custom components, it has to be in Upper case for the starting letter
+
+    //Extra credit Validation props type
+
+    function Message({ subject, greeting }) {
+      return (
+        <div className="message">
+          {greeting},{subject}
+        </div>
+      );
     }
-    const element = (
-      <div className="container">
-        <Message>Something{HelloJSX}</Message>
+
+    //Error throwing to programmer, disabled in react production
+    const propTypes = {
+      string(props, propName, componentName) {
+        console.log(props, propName, componentName);
+        const type = typeof props[propName];
+        if (type !== "string") {
+          return new Error(
+            `Hello, the component ${componentName} needs the prop \"${propName}\" to be a string`
+          );
+        }
+      },
+    };
+
+    Message.propTypes = {
+      subject: propTypes.string,
+    };
+
+    const helloElement = (
+      <div>
+        <Message subject={5} greeting="Goodbye" />
       </div>
     );
 
-    // 💯 This is only the first step to making actual React components. The rest is in the extra credit!
-    ReactDOM.render(element, document.getElementById("root"));
-
-    // Extra Credit 1
-    const helloElement = React.createElement(Message, {
-      children: "您好",
-    });
     ReactDOM.render(helloElement, document.getElementById("extra_credit_1"));
-
-    //If you want to write React custom components, it has to be in Upper case for the starting letter
   </script>
 </body>
