@@ -31,7 +31,15 @@
     // `className` rather than `class`!
     // 📜 You can learn the differences between JSX and HTML syntax from the React docs here:
     // https://reactjs.org/docs/dom-elements.html#differences-in-attributes
-    ReactDOM.render(element, document.getElementById("root"));
+
     /* The compiled babel code is in the head script tag */
+
+    /* Spreading objects */
+    const props = { children, className };
+    /* console.log({ id: "my-thing", ...props }); */
+    const element2 = <div id="my-thing" {...props} />;
+
+    // You can also overwrite the props by adding the same name when spreading
+    ReactDOM.render(element2, document.getElementById("root"));
   </script>
 </body>
